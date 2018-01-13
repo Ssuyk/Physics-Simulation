@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pylab import *
-# import matplotlib
-# matplotlib.use('Qt5Agg')
 import scipy.optimize 
 from scipy.integrate import odeint
 
@@ -31,23 +29,9 @@ def Elec_velocity(t,params):
 
 	t_i = params['t_i'] 
 	# Y = -A1/omega1*(np.sin(omega1*t)-np.sin(omega1*t_i))
+	
 	Y = -A1/omega1*(np.sin(omega1*t)-np.sin(omega1*t_i))\
 	-A2/omega2*(np.sin(omega2*t+phi0)-np.sin(omega2*t_i+phi0))
-
-	# Y = -A1/omega1*(\
-	# 	(np.sin(omega1*t)-np.sin(omega1*t_i))\
-	# 	+(1/(3**3))*(np.sin(3*omega1*t)-np.sin(3*omega1*t_i))\
-	# 	+(1/(5**3))*(np.sin(5*omega1*t)-np.sin(5*omega1*t_i))\
-	# 	+(1/(7**3))*(np.sin(7*omega1*t)-np.sin(7*omega1*t_i))\
-	# 	)
-
-	# Y = +A1/omega1*(\
-	# 	(np.cos(omega1*t)-np.cos(omega1*t_i))\
-	# 	+(1/(3**2))*(np.cos(3*omega1*t)-np.cos(3*omega1*t_i))\
-	# 	+(1/(5**2))*(np.cos(5*omega1*t)-np.cos(5*omega1*t_i))\
-	# 	+(1/(7**2))*(np.cos(7*omega1*t)-np.cos(7*omega1*t_i))\
-	# 	+(1/(9**2))*(np.cos(9*omega1*t)-np.cos(9*omega1*t_i))\
-	# 	)
 	
 	return Y
 
@@ -66,32 +50,6 @@ def Elec_position(t,params):
 	 + A1/omega1*np.sin(omega1*t_i)*(t-t_i)\
 	 + A2/omega2**2*(np.cos(omega2*t+phi0)-np.cos(omega2*t_i+phi0))\
 	 + A2/omega2*np.sin(omega2*t_i+phi0)*(t-t_i)
-	# Y = A1/omega1**2*(\
-	# 	(np.cos(omega1*t)-np.cos(omega1*t_i))\
-	#     +(1/(3**4))*(np.cos(3*omega1*t)-np.cos(3*omega1*t_i))\
-	#     +(1/(5**4))*(np.cos(5*omega1*t)-np.cos(5*omega1*t_i))\
-	# 	+(1/(7**4))*(np.cos(7*omega1*t)-np.cos(7*omega1*t_i))\
-	# 	) + A1/omega1*(\
-	#  	+ np.sin(omega1*t_i)*(t-t_i)\
-	#  	+ (1/(3**3))*np.sin(3*omega1*t_i)*(t-t_i)\
-	#  	+ (1/(5**3))*np.sin(5*omega1*t_i)*(t-t_i)\
-	#  	+ (1/(7**3))*np.sin(7*omega1*t_i)*(t-t_i)\
-	#  )
-
-	# Y = A1/omega1**2*(\
-	# 	(np.sin(omega1*t)-np.sin(omega1*t_i))\
-	#     +(1/(3**3))*(np.sin(3*omega1*t)-np.sin(3*omega1*t_i))\
-	#     +(1/(5**3))*(np.sin(5*omega1*t)-np.sin(5*omega1*t_i))\
-	# 	+(1/(7**3))*(np.sin(7*omega1*t)-np.sin(7*omega1*t_i))\
-	# 	+(1/(9**3))*(np.sin(9*omega1*t)-np.sin(9*omega1*t_i))\
-	# 	) + A1/omega1*(\
-	#  	+ np.cos(omega1*t_i)*(t-t_i)\
-	#  	+ (1/(3**2))*np.cos(3*omega1*t_i)*(t-t_i)\
-	#  	+ (1/(5**2))*np.cos(5*omega1*t_i)*(t-t_i)\
-	#  	+ (1/(7**2))*np.cos(7*omega1*t_i)*(t-t_i)\
-	# 	+ (1/(9**2))*np.cos(9*omega1*t_i)*(t-t_i)\
-	# 	)
-
 		
 	return Y
 
@@ -108,24 +66,8 @@ def E_field(t,params):
 	return -A1*np.cos(omega1*(t))*np.exp(-(2*t/DeltaT1)**2)\
 			- A2*np.cos(omega2*(t)+phi0)*np.exp(-(2*t/DeltaT2)**2)\
 
-	# return A1*(np.cos(omega1*t)) + A2*(np.cos(omega2*t+phi0)) 
-
-	# return -A1*(np.cos(omega1*t))
-
-	# return -A1*(\
-	# 	np.cos(omega1*t)\
-	# 	 + np.cos(3*omega1*t)/9\
-	# 	 +np.cos(5*omega1*t)/25\
-	# 	 +np.cos(7*omega1*t)/49\
-	# 	 )
-
-	# return -A1*(\
-	# 	np.sin(omega1*t)\
-	# 	 + np.sin(3*omega1*t)/3\
-	# 	 +np.sin(5*omega1*t)/5\
-	# 	 +np.sin(7*omega1*t)/7\
-	# 	 +np.sin(9*omega1*t)/9\
-	# 	 )		
+	# return -A1*(np.cos(omega1*t))		
+	
 def Ode_func(y,t,params):
 
 	x = y[0]
